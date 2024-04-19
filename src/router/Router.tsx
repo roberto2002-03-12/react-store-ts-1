@@ -28,6 +28,7 @@ export const Router = () => {
               <Route path='/my-order' element={<MyOrder />} />
               <Route path='/my-orders' element={<MyOrders />} />
               <Route path='/sign-in' element={<SignIn />} />
+              <Route path='/*' element={<NotFound />} />
             </>
           ) : (
             <>
