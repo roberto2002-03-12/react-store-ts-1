@@ -66,7 +66,7 @@ export const Home = () => {
                 <button type='submit' className='bg-black text-white rounded-r-lg p-2 border-2 border-black '>Filter</button>
               </form>
             </div>
-            <div className='grid gap-y-6 gap-x-4 grid-cols-4 w-full max-w-screen-lg'>
+            <div className='grid gap-y-6 gap-x-4 lg:grid-cols-4 md:grid-cols-3 w-full max-w-screen-lg place-items-center'>
               {
                 itemsToShow.map((data: IItemShop) => (
                   <Card item={data} key={data.id} />

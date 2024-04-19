@@ -8,7 +8,7 @@ export const MyOrders = () => {
   return (
     <Layout>
       <div className='flex flex-col items-center justify-center w-full max-w-screen-lg'>
-        <div className='flex justify-between w-80 border-b-2 border-gray-400 pb-2'>
+        <div className='flex justify-between w-72 md:w-80 lg:w-80 border-b-2 border-gray-400 pb-2'>
           <p>
             Orders
           </p>

@@ -3,3 +3,9 @@
   height: calc(100vh - 75px);
   top: 68px;
 }
+
+@media screen and (max-width: 568px) {
+  .checkout-side-menu {
+    width: 288px;
+  }
+}

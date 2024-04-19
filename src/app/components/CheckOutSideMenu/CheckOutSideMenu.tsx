@@ -22,7 +22,7 @@ export const CheckOutSideMenu = () => {
 
   return (
     <aside className={`checkout-side-menu ${isCheckOutSideMenu === true ? 'flex' : 'hidden'} flex-col fixed right-0 border border-black rounded-lg bg-white`}>
-      <div className='flex justify-between items-center pl-6 pr-6 pt-6 pb-4'>
+      <div className='flex justify-between items-center pl-3 pr-3 pt-6 pb-4 md:pl-6 md:pr-6'>
         <h2 className='font-medium text-xl'>My Order</h2>
         <div onClick={() => setIsCheckOutSideMenu(false)} className='cursor-pointer'>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
@@ -30,11 +30,11 @@ export const CheckOutSideMenu = () => {
           </svg>
         </div>
       </div>
-      <div className='flex justify-between items-center pl-6 pr-6 pb-6'>
+      <div className='flex justify-between items-center pl-3 pr-3 pb-6 md:pl-6 md:pr-6'>
         <p>Total: </p>
         <p>S/. {totalPrice.toFixed(2)}</p>
       </div>
-      <div className='px-6 overflow-y-scroll max-h-[400px] h-[400px]'>
+      <div className='px-2 overflow-y-scroll max-h-[80vh] h-[80vh] md:px-6'>
         {
           cartItems.map(prod => <OrderCart product={ prod } key={ prod.id }/>)
         }

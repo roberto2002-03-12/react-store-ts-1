@@ -17,7 +17,7 @@ export const OrderCard = ({ order, setOrderSelected } : { order: IOrder; setOrde
         </svg>
       </div>
       <div className='mt-2 w-full flex justify-between items-center'>
-        <p className='text-md font-semibold'>Total: {order.totalPrice}</p>
+        <p className='text-md font-semibold'>Total: S/. {order.totalPrice.toFixed(2)}</p>
         <p className='text-sm font-light'>Products ud. {order.totalProducts}</p>
       </div>
     </div>

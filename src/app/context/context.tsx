@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useState } from 'react'
-import { IItemShop, IOrder } from '../models';
+import { IItemShop, IOrder, TypeAuthState } from '../models';
 
 interface ShoppingCartProviderProps {
   children: ReactNode;
@@ -26,7 +26,9 @@ interface ShoppingCartContext {
   removeOrder: (id: number) => void;
   orderSelected: IOrder;
   setOrderSelected: React.Dispatch<React.SetStateAction<IOrder>>;
-
+  auth: TypeAuthState;
+  changeAuthStatus: () => void;
+  setAuth: React.Dispatch<React.SetStateAction<TypeAuthState>>;
 }
 
 const initProduct: IItemShop = {
@@ -67,7 +69,10 @@ const initContext: ShoppingCartContext = {
   addOrder: () => {},
   removeOrder: () => {},
   orderSelected: initOrder,
-  setOrderSelected: () => {}
+  setOrderSelected: () => {},
+  auth: "not-authenticated",
+  changeAuthStatus: () => {},
+  setAuth: () => {}
 }
 
 export const ShoppingCartContext = createContext<ShoppingCartContext>(initContext);
@@ -84,6 +89,8 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
   // orders made
   const [ordersMade, setOrdersMade] = useState<IOrder[]>([]);
   const [orderSelected, setOrderSelected] = useState<IOrder>(initOrder);
+  // auth status
+  const [auth, setAuth] = useState<TypeAuthState>('not-authenticated');
 
   const addItemToCart = (item: IItemShop) => {
     const index = cartItems.findIndex(prod => prod.id === item.id);
@@ -150,6 +157,17 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
     setOrdersMade(newOrders);
   }
 
+  // auth status
+  const changeAuthStatus = () => {
+    if (auth === 'not-authenticated') {
+      setAuth('authenticated');
+      localStorage.setItem("authStatus", "authenticated")
+    } else {
+      setAuth('not-authenticated');
+      localStorage.setItem("authStatus", "not-authenticated");
+    }
+  }
+
   return (
     <ShoppingCartContext.Provider value={{
       count,
@@ -170,7 +188,10 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
       addOrder,
       removeOrder,
       orderSelected,
-      setOrderSelected      
+      setOrderSelected,
+      auth,
+      changeAuthStatus,
+      setAuth
     }}>
       { children }
     </ShoppingCartContext.Provider>
